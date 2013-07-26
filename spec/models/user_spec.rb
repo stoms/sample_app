@@ -69,6 +69,32 @@ describe User do
     it { should_not be_valid }
   end
 
+  describe "when email downcasing works" do
+    let(:upcase_email) { 'IM@INUPCASE.COM' }
+    let(:downcase_email) { 'im@inupcase.com' }
+    let(:valid_password) { 'foobar' }
+    it "should be valid" do
+      @user.email = upcase_email 
+      @user.password = valid_password
+      @user.password_confirmation = valid_password
+      @user.save
+      expect(@user.email).to eq(downcase_email)
+    end
+  end
+
+  describe "when email downcasing works" do
+    let(:upcase_email) { 'IM@INUPCASE.COM' }
+    let(:downcase_email) { 'im@inupcase.com' }
+    let(:valid_password) { 'foobar' }
+    it "should be invalid" do
+      @user.email = upcase_email 
+      @user.password = valid_password
+      @user.password_confirmation = valid_password
+      @user.save
+      expect(@user.email).not_to eq(upcase_email)
+    end
+  end
+
   describe "when password is not present" do
     before do
       @user = User.new(name: "Example User", email: "user@ex.org",
