@@ -3,7 +3,7 @@ describe "Static pages" do
     subject { page }
 
     shared_examples_for "all static pages" do
-        it { should have_selector('h1', text: heading) }
+        it { should have_content(heading) }
         it { should have_selector('title', text: page_title) }
     end
 
@@ -45,6 +45,7 @@ describe "Static pages" do
       click_link "Contact"
       expect(page).to have_selector('title', text: full_title('Contact'))
       click_link "Home"
+      expect(page).to have_selector('title', text: full_title(''))
       click_link "Sign up now!"
       expect(page).to have_selector('title', text: full_title('Sign Up'))
       click_link "sample app"
