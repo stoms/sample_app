@@ -28,6 +28,19 @@ describe "UserPages" do
       end
     end
 
+    describe "with invalid information" do
+      before do
+        fill_in "Name",         with: "Example User"
+        fill_in "Email",        with: "user@example"
+        fill_in "Password",     with: "foobar"
+        fill_in "Confirmation", with: "foobar"
+      end
+      describe "after submission" do
+        before { click_button submit }
+        it { should have_selector('title', text: 'Sign Up') }
+        it { should have_content('error') }
+      end
+    end
   end
 
   describe "profile page" do
@@ -37,4 +50,5 @@ describe "UserPages" do
     it { should have_content(user.name) }
     it { should have_selector('title', text: user.name) }
   end
+
 end
