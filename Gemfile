@@ -38,6 +38,9 @@ group :test do
   #gem 'rb-inotify', '0.8.8'
   gem 'rb-inotify', '~> 0.9'
   gem 'libnotify', '0.5.9'
+  gem 'cucumber-rails', '1.3.0', :require => false
+  #gem 'database-cleaner', github: 'bmabey/database_cleaner'
+  #gem 'database-cleaner', "~> 1.1.1"
 end
 
 group :production do
@@ -59,3 +62,4 @@ gem 'bcrypt-ruby', '~> 3.0.0'
 
 # To use debugger
 # gem 'debugger'
+gem 'turbolinks'
